@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "sort": "node index.js --action sort --path ../",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

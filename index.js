@@ -1,5 +1,5 @@
 const { program } = require("commander");
-const { sortDir } = require("./sortdir");
+const { sortDir, getBasePath } = require("./sortdir");
 
 program
   .option("-f, --first <type>")
@@ -15,7 +15,8 @@ console.log(options);
 function invokeActions({ action, path, ...options }) {
   switch (action) {
     case "sort":
-      sortDir(path);
+      const basePath = getBasePath(path);
+      sortDir(basePath);
       break;
 
     default:

@@ -1,11 +1,19 @@
 const express = require("express");
-require("./app");
-const { PORT } = require("./envConfig");
 
-const app = express();
+const { PORT, DB_HOST } = require("./envConfig");
 
-app.listen(PORT, () => {
-  console.log("server run on port", PORT);
-});
+const { default: mongoose } = require("mongoose");
 
-module.exports = app;
+const app = require("./app");
+
+mongoose
+  .connect(DB_HOST)
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log("server run on port", PORT);
+    });
+  })
+  .catch((error) => {
+    console.log(error.message);
+    process.exit(1);
+  });
